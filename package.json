@@ -1,7 +1,7 @@
 {
-  "name": "meanauthapp",
+  "name": "timeclockapp",
   "version": "1.0.0",
-  "description": "MEAN stack authentication app ",
+  "description": "MEAN Stack Time Clock Application",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

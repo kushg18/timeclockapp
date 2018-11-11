@@ -555,7 +555,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/kushalgevaria/Desktop/Angular/TraverseTime/meanauthapp/angularsrc/src/styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! /Users/kushalgevaria/Desktop/Angular/TraverseTime/timeclockapp/angularsrc/src/styles.css */"./src/styles.css");
 
 
 /***/ })
