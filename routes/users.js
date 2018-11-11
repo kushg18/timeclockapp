@@ -3,6 +3,7 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 const User = require('../models/user');
+const Activity = require('../models/activity');
 const config = require('../config/database');
 
 
@@ -58,8 +59,42 @@ router.post('/authenticate', (req, res, next) => {
 
 // Profile
 router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    console.log("Getting Profile");
     res.json({
         user: req.user
+    });
+});
+
+// Add Activity
+router.post('/activity', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    console.log("Adding Activity");
+    let newActivity = new Activity({
+        userId: req.body.userId,
+        activityType: req.body.activityType,
+        date: req.body.date,
+        time: req.body.time
+    });
+    console.log(newActivity);
+    Activity.addActivity(newActivity, (err, activity) => {
+        if(err){
+            // res.send(err);
+            res.json({success: false, msg: 'Failed to add user activity'});
+        }else{
+            res.json({success: true, msg: 'Added user activity'});
+        }
+    });
+}); 
+ 
+// Get All Activities
+router.get('/activity/:userId', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    console.log("Getting Activity");
+    var userId = req.params.userId;
+    Activity.getActivitiesByUserId(userId, (err, activity) => {
+        if(err){
+            res.json({success: false, msg: 'Failed to get user activity'});
+        }else{
+            res.json(activity);
+        }
     });
 });
 

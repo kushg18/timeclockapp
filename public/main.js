@@ -124,6 +124,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
         this.title = 'angularsrc';
+        this.isCollapsed = false;
     }
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -158,13 +159,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/navbar/navbar.component */ "./src/app/components/navbar/navbar.component.ts");
-/* harmony import */ var _components_login_login_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/login/login.component */ "./src/app/components/login/login.component.ts");
-/* harmony import */ var _components_register_register_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/register/register.component */ "./src/app/components/register/register.component.ts");
-/* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
-/* harmony import */ var _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/dashboard/dashboard.component */ "./src/app/components/dashboard/dashboard.component.ts");
-/* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
-/* harmony import */ var _services_validate_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./services/validate.service */ "./src/app/services/validate.service.ts");
-/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var _components_login_login_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/login/login.component */ "./src/app/components/login/login.component.ts");
+/* harmony import */ var _components_register_register_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/register/register.component */ "./src/app/components/register/register.component.ts");
+/* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
+/* harmony import */ var _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/dashboard/dashboard.component */ "./src/app/components/dashboard/dashboard.component.ts");
+/* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
+/* harmony import */ var _services_validate_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./services/validate.service */ "./src/app/services/validate.service.ts");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/services/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -186,6 +188,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+// https://salty-lowlands-71106.herokuapp.com/
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -194,20 +198,21 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"],
                 _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_7__["NavbarComponent"],
-                _components_login_login_component__WEBPACK_IMPORTED_MODULE_8__["LoginComponent"],
-                _components_register_register_component__WEBPACK_IMPORTED_MODULE_9__["RegisterComponent"],
-                _components_home_home_component__WEBPACK_IMPORTED_MODULE_10__["HomeComponent"],
-                _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_11__["DashboardComponent"],
-                _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_12__["ProfileComponent"]
+                _components_login_login_component__WEBPACK_IMPORTED_MODULE_9__["LoginComponent"],
+                _components_register_register_component__WEBPACK_IMPORTED_MODULE_10__["RegisterComponent"],
+                _components_home_home_component__WEBPACK_IMPORTED_MODULE_11__["HomeComponent"],
+                _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_12__["DashboardComponent"],
+                _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_13__["ProfileComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
                 _angular_http__WEBPACK_IMPORTED_MODULE_2__["HttpModule"],
-                angular2_flash_messages__WEBPACK_IMPORTED_MODULE_4__["FlashMessagesModule"].forRoot()
+                angular2_flash_messages__WEBPACK_IMPORTED_MODULE_4__["FlashMessagesModule"].forRoot(),
+                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_8__["NgbModule"].forRoot()
             ],
-            providers: [_services_validate_service__WEBPACK_IMPORTED_MODULE_13__["ValidateService"], _services_auth_service__WEBPACK_IMPORTED_MODULE_14__["AuthService"]],
+            providers: [_services_validate_service__WEBPACK_IMPORTED_MODULE_14__["ValidateService"], _services_auth_service__WEBPACK_IMPORTED_MODULE_15__["AuthService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
         })
     ], AppModule);
@@ -225,7 +230,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvZGFzaGJvYXJkL2Rhc2hib2FyZC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "@import url('https://fonts.googleapis.com/css?family=Orbitron');\n\n/* Overwrite the default to keep the scrollbar always visible */\n\n::-webkit-scrollbar {\n    -webkit-appearance: none;\n    width: 7px;\n}\n\n::-webkit-scrollbar-thumb {\n    border-radius: 4px;\n    background-color: rgba(0,0,0,.5);\n    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);\n}\n\n.clock{\n    width: 300px;\n    font-size: 34px;\n    padding: 10px; \n    font-family: Orbitron;\n}\n\n.dayAndDate{\n    width: 300px;\n    padding: 5px; \n}\n\n.day{\n    display: block;\n    font-size: 20px;\n    text-align: right;\n}\n\n.date{\n    display: block;\n    font-size: 12px;\n    text-align: right;\n}\n\n.clockButtons{\n    padding-top: 20px;\n}\n\ntable {\n    text-align: center;\n}\n\ntbody, thead tr { display: block; }\n\ntbody {\n    height: 300px;\n    overflow-y: auto;\n    overflow-x: hidden;\n    \n}\n\ntbody td, thead {\n    width: 120px;\n}\n\n.thClass{\n    width: 120px;\n}\n\n.bodyContent{\n    width: 120px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9kYXNoYm9hcmQvZGFzaGJvYXJkLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsZ0VBQWdFOztBQUVoRSxnRUFBZ0U7O0FBRWhFO0lBQ0kseUJBQXlCO0lBQ3pCLFdBQVc7Q0FDZDs7QUFFRDtJQUNJLG1CQUFtQjtJQUNuQixpQ0FBaUM7SUFDakMsaURBQWlEO0NBQ3BEOztBQUVEO0lBQ0ksYUFBYTtJQUNiLGdCQUFnQjtJQUNoQixjQUFjO0lBQ2Qsc0JBQXNCO0NBQ3pCOztBQUVEO0lBQ0ksYUFBYTtJQUNiLGFBQWE7Q0FDaEI7O0FBRUQ7SUFDSSxlQUFlO0lBQ2YsZ0JBQWdCO0lBQ2hCLGtCQUFrQjtDQUNyQjs7QUFFRDtJQUNJLGVBQWU7SUFDZixnQkFBZ0I7SUFDaEIsa0JBQWtCO0NBQ3JCOztBQUVEO0lBQ0ksa0JBQWtCO0NBQ3JCOztBQUVEO0lBQ0ksbUJBQW1CO0NBQ3RCOztBQUVELGtCQUFrQixlQUFlLEVBQUU7O0FBRW5DO0lBQ0ksY0FBYztJQUNkLGlCQUFpQjtJQUNqQixtQkFBbUI7O0NBRXRCOztBQUVEO0lBQ0ksYUFBYTtDQUNoQjs7QUFHRDtJQUNJLGFBQWE7Q0FDaEI7O0FBRUQ7SUFDSSxhQUFhO0NBQ2hCIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9kYXNoYm9hcmQvZGFzaGJvYXJkLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0IHVybCgnaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3M/ZmFtaWx5PU9yYml0cm9uJyk7XG5cbi8qIE92ZXJ3cml0ZSB0aGUgZGVmYXVsdCB0byBrZWVwIHRoZSBzY3JvbGxiYXIgYWx3YXlzIHZpc2libGUgKi9cblxuOjotd2Via2l0LXNjcm9sbGJhciB7XG4gICAgLXdlYmtpdC1hcHBlYXJhbmNlOiBub25lO1xuICAgIHdpZHRoOiA3cHg7XG59XG5cbjo6LXdlYmtpdC1zY3JvbGxiYXItdGh1bWIge1xuICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDAsMCwwLC41KTtcbiAgICAtd2Via2l0LWJveC1zaGFkb3c6IDAgMCAxcHggcmdiYSgyNTUsMjU1LDI1NSwuNSk7XG59XG5cbi5jbG9ja3tcbiAgICB3aWR0aDogMzAwcHg7XG4gICAgZm9udC1zaXplOiAzNHB4O1xuICAgIHBhZGRpbmc6IDEwcHg7IFxuICAgIGZvbnQtZmFtaWx5OiBPcmJpdHJvbjtcbn1cblxuLmRheUFuZERhdGV7XG4gICAgd2lkdGg6IDMwMHB4O1xuICAgIHBhZGRpbmc6IDVweDsgXG59XG5cbi5kYXl7XG4gICAgZGlzcGxheTogYmxvY2s7XG4gICAgZm9udC1zaXplOiAyMHB4O1xuICAgIHRleHQtYWxpZ246IHJpZ2h0O1xufVxuXG4uZGF0ZXtcbiAgICBkaXNwbGF5OiBibG9jaztcbiAgICBmb250LXNpemU6IDEycHg7XG4gICAgdGV4dC1hbGlnbjogcmlnaHQ7XG59XG5cbi5jbG9ja0J1dHRvbnN7XG4gICAgcGFkZGluZy10b3A6IDIwcHg7XG59XG5cbnRhYmxlIHtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbnRib2R5LCB0aGVhZCB0ciB7IGRpc3BsYXk6IGJsb2NrOyB9XG5cbnRib2R5IHtcbiAgICBoZWlnaHQ6IDMwMHB4O1xuICAgIG92ZXJmbG93LXk6IGF1dG87XG4gICAgb3ZlcmZsb3cteDogaGlkZGVuO1xuICAgIFxufVxuXG50Ym9keSB0ZCwgdGhlYWQge1xuICAgIHdpZHRoOiAxMjBweDtcbn1cblxuXG4udGhDbGFzc3tcbiAgICB3aWR0aDogMTIwcHg7XG59XG5cbi5ib2R5Q29udGVudHtcbiAgICB3aWR0aDogMTIwcHg7XG59Il19 */"
 
 /***/ }),
 
@@ -236,7 +241,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Dashboard</h2>\n<hr>\n<p>Welcome to Dashboard!</p>"
+module.exports = "<h2 class=\"page-header\">Dashboard</h2>\n<hr>\n<p>Welcome to Dashboard!</p>\n<div class=\"jumbotron text-center\">\n    <h1>Punch Your Clock</h1>\n    <div class=\"row\">\n        <div class=\"col\">\n            <div class=\"border border-primary rounded clock mb-2\">\n                <span id=\"hour\"></span>\n                <span id=\"minute\"></span>\n                <span id=\"second\"></span>\n                <span id='ampm'></span>\n            </div>\n            <div class=\"border rounded dayAndDate mb-2\">\n                <span class=\"day\" id=\"day\"></span>\n                <span class=\"date\" id=\"date\"></span>\n            </div>\n        </div>\n        <div class=\"col clockButtons\">\n            <button type=\"button\" *ngIf=\"punchIn\" (click)=\"punchedIn()\" class=\"btn btn-outline-primary mr-2 mb-2\">Punch In</button>\n            <button type=\"button\" *ngIf=\"punchOut\" (click)=\"punchedOut()\" class=\"btn btn-outline-primary mr-2 mb-2\">Punch Out</button>\n            <br>\n            <button type=\"button\" *ngIf=\"breakIn\" (click)=\"breakedIn()\" class=\"btn btn-outline-primary mr-2 mb-2\">Break In</button>\n            <button type=\"button\" *ngIf=\"breakOut\" (click)=\"breakedOut()\" class=\"btn btn-outline-primary mr-2 mb-2\">Break Out</button>\n            <br>\n            <button type=\"button\" *ngIf=\"lunchIn\" (click)=\"lunchedIn()\" class=\"btn btn-outline-primary mr-2\">Lunch In</button>\n            <button type=\"button\" *ngIf=\"lunchOut\" (click)=\"lunchedOut()\" class=\"btn btn-outline-primary mr-2\">Lunch Out</button>\n        </div>\n        <div class=\"col\">\n            <table class=\"table\">\n                <thead class=\"nonScrollHead\">\n                    <tr class=\"trClass\">\n                        <th scope=\"col\" class=\"thClass\">Category</th>\n                        <th scope=\"col\" class=\"thClass\">Time</th>\n                    </tr>\n                </thead>\n                <tbody class=\"scrollTableBody\" id=\"scrollBody\">\n                    <tr *ngFor=\"let activity of reverseArray(userActivities);\" class=\"trClass\">\n                        <th scope=\"row\" class=\"bodyContent\">{{activity.activityType}}</th>\n                        <td class=\"bodyContent\">  {{activity.time}}</td>\n                    </tr>\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n\n"
 
 /***/ }),
 
@@ -251,6 +256,10 @@ module.exports = "<h2 class=\"page-header\">Dashboard</h2>\n<hr>\n<p>Welcome to 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashboardComponent", function() { return DashboardComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var angular2_flash_messages__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! angular2-flash-messages */ "./node_modules/angular2-flash-messages/module/index.js");
+/* harmony import */ var angular2_flash_messages__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(angular2_flash_messages__WEBPACK_IMPORTED_MODULE_3__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -261,10 +270,215 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var DashboardComponent = /** @class */ (function () {
-    function DashboardComponent() {
+    function DashboardComponent(authService, router, flashMessage) {
+        var _this = this;
+        this.authService = authService;
+        this.router = router;
+        this.flashMessage = flashMessage;
+        this.userActivities = [];
+        this.punchIn = true;
+        this.punchOut = false;
+        this.breakIn = true;
+        this.breakOut = false;
+        this.lunchIn = true;
+        this.lunchOut = false;
+        this.authService.getProfile()
+            .subscribe(function (profile) {
+            _this.user = profile.user;
+            _this.getActivities();
+        }, function (err) {
+            console.log(err);
+            return false;
+        });
     }
     DashboardComponent.prototype.ngOnInit = function () {
+        this.interval = setInterval(this.clock, 1000);
+        this.clock();
+    };
+    DashboardComponent.prototype.ngOnDestroy = function () {
+        if (this.interval) {
+            clearInterval(this.interval);
+        }
+    };
+    DashboardComponent.prototype.storeActivity = function (actType, time) {
+        var _this = this;
+        this.authService.addUserActivity(this.user, actType, this.date, time)
+            .subscribe(function (data) {
+            if (data.success) {
+                _this.flashMessage.show(actType, {
+                    cssClass: "alert alert-success",
+                    timeout: 2000
+                });
+            }
+            else {
+                _this.flashMessage.show('Something went wrong.', {
+                    cssClass: "alert alert-danger",
+                    timeout: 2000
+                });
+            }
+            _this.getActivities();
+        });
+    };
+    DashboardComponent.prototype.getActivities = function () {
+        var _this = this;
+        this.authService.getUserActivities(this.user)
+            .subscribe(function (data) {
+            _this.userActivities = [];
+            var date = new Date();
+            var currentDate = date.getDate();
+            var currentMonth = date.getMonth();
+            var currentYear = date.getFullYear();
+            console.log("Current Day: ", currentDate);
+            for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
+                var entry = data_1[_i];
+                var entryDate = new Date(entry.date);
+                if (entryDate.getDate() == currentDate
+                    && entryDate.getMonth() == currentMonth
+                    && entryDate.getFullYear() == currentYear) {
+                    _this.userActivities.push(entry);
+                }
+            }
+            // this.userActivities = data;
+            if (!(_this.userActivities === undefined || _this.userActivities.length == 0)) {
+                var lastActivity = _this.userActivities[_this.userActivities.length - 1]["activityType"];
+                if (lastActivity == "Punch In") {
+                    _this.setPunchInElems();
+                }
+                else if (lastActivity == "Lunch In") {
+                    _this.setLunchInElems();
+                }
+                else if (lastActivity == "Break In") {
+                    _this.setBreakInElems();
+                }
+                else {
+                    console.log("Setting checkouts");
+                    _this.checkedOut();
+                }
+            }
+        });
+        // var scroller = document.querySelector("#scrollBody");
+        // scroller.scrollTop = scroller.scrollHeight - scroller.clientHeight;
+    };
+    DashboardComponent.prototype.reverseArray = function (array) {
+        return array.slice(0).reverse();
+    };
+    DashboardComponent.prototype.punchedIn = function () {
+        var actType = "Punch In";
+        this.date = new Date();
+        var punchInTime = this.beautifyTime(this.date);
+        this.storeActivity(actType, punchInTime);
+    };
+    DashboardComponent.prototype.setPunchInElems = function () {
+        this.punchIn = false;
+        this.punchOut = true;
+        this.breakIn = false;
+        this.breakOut = false;
+        this.lunchIn = false;
+        this.lunchOut = false;
+    };
+    DashboardComponent.prototype.punchedOut = function () {
+        var actType = "Punch Out";
+        this.date = new Date();
+        var punchOutTime = this.beautifyTime(this.date);
+        this.storeActivity(actType, punchOutTime);
+    };
+    DashboardComponent.prototype.lunchedIn = function () {
+        var actType = "Lunch In";
+        this.date = new Date();
+        var lunchInTime = this.beautifyTime(this.date);
+        this.storeActivity(actType, lunchInTime);
+    };
+    DashboardComponent.prototype.setLunchInElems = function () {
+        this.punchIn = false;
+        this.punchOut = false;
+        this.breakIn = false;
+        this.breakOut = false;
+        this.lunchIn = false;
+        this.lunchOut = true;
+    };
+    DashboardComponent.prototype.lunchedOut = function () {
+        var actType = "Lunch Out";
+        this.date = new Date();
+        var lunchOutTime = this.beautifyTime(this.date);
+        this.storeActivity(actType, lunchOutTime);
+    };
+    DashboardComponent.prototype.breakedIn = function () {
+        var actType = "Break In";
+        this.date = new Date();
+        var breakInTime = this.beautifyTime(this.date);
+        this.storeActivity(actType, breakInTime);
+    };
+    DashboardComponent.prototype.setBreakInElems = function () {
+        this.punchIn = false;
+        this.punchOut = false;
+        this.breakIn = false;
+        this.breakOut = true;
+        this.lunchIn = false;
+        this.lunchOut = false;
+    };
+    DashboardComponent.prototype.breakedOut = function () {
+        var actType = "Break Out";
+        this.date = new Date();
+        var breakOutTime = this.beautifyTime(this.date);
+        this.storeActivity(actType, breakOutTime);
+    };
+    DashboardComponent.prototype.checkedOut = function () {
+        this.punchIn = true;
+        this.punchOut = false;
+        this.breakIn = true;
+        this.breakOut = false;
+        this.lunchIn = true;
+        this.lunchOut = false;
+    };
+    DashboardComponent.prototype.beautifyTime = function (date) {
+        var hour = date.getHours();
+        var minute = date.getMinutes();
+        var second = date.getSeconds();
+        var ampm = hour >= 12 ? 'PM' : 'AM';
+        hour = hour % 12;
+        hour = hour ? hour : 12;
+        var hour1 = ("0" + hour).slice(-2);
+        var minute1 = ("0" + minute).slice(-2);
+        var second1 = ("0" + second).slice(-2);
+        return hour1 + ":" + minute1 + ":" + second1 + " " + ampm;
+    };
+    DashboardComponent.prototype.clock = function () {
+        var weekday = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+        ];
+        this.date = new Date();
+        var day = weekday[this.date.getDay()];
+        var dd = this.date.getDate();
+        var mm = (this.date.getMonth() + 1); //January is 0!
+        var yyyy = this.date.getFullYear();
+        var dd1 = ("0" + dd).slice(-2);
+        var mm1 = ("0" + mm).slice(-2);
+        var today = dd1 + '/' + mm1 + '/' + yyyy;
+        var hour = this.date.getHours();
+        var minute = this.date.getMinutes();
+        var second = this.date.getSeconds();
+        var ampm = hour >= 12 ? 'PM' : 'AM';
+        hour = hour % 12;
+        hour = hour ? hour : 12;
+        var hour1 = ("0" + hour).slice(-2);
+        var minute1 = ("0" + minute).slice(-2);
+        var second1 = ("0" + second).slice(-2);
+        document.getElementById('hour').innerHTML = hour1;
+        document.getElementById('minute').innerHTML = ":" + minute1;
+        document.getElementById('second').innerHTML = ":" + second1;
+        document.getElementById('ampm').innerHTML = " " + ampm;
+        document.getElementById('day').innerHTML = day;
+        document.getElementById('date').innerHTML = today;
     };
     DashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -272,7 +486,9 @@ var DashboardComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./dashboard.component.html */ "./src/app/components/dashboard/dashboard.component.html"),
             styles: [__webpack_require__(/*! ./dashboard.component.css */ "./src/app/components/dashboard/dashboard.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+            angular2_flash_messages__WEBPACK_IMPORTED_MODULE_3__["FlashMessagesService"]])
     ], DashboardComponent);
     return DashboardComponent;
 }());
@@ -462,7 +678,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark bg-primary mb-3\">\n    <a class=\"navbar-brand\" href=\"#\">Mean Auth App</a>\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n  \n    <div class=\"collapse navbar-collapse\" id=\"navbarColor01\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\">\n          <a class=\"nav-link\" [routerLink]=\"['/']\">Home </a>\n        </li>\n      </ul> \n      <ul class=\"navbar-nav ml-auto\">\n          <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"> \n            <a class=\"nav-link\" [routerLink]=\"['/dashboard']\">Dashboard </a>\n          </li>\n          <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"> \n            <a class=\"nav-link\" [routerLink]=\"['/profile']\">Profile </a>\n          </li>\n          <li class=\"nav-item\" *ngIf=\"!authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"> \n            <a class=\"nav-link\" [routerLink]=\"['/login']\">Login </a>\n          </li>\n          <li class=\"nav-item\" *ngIf=\"!authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\">\n              <a class=\"nav-link\" [routerLink]=\"['/register']\">Register </a>\n          </li>\n          <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\">\n            <a class=\"nav-link\" (click)=\"onLogoutClick()\" href=\"#\">Logout </a>\n        </li>\n      </ul>\n      <!-- <form class=\"form-inline my-2 my-lg-0\">\n        <input class=\"form-control mr-sm-2\" type=\"text\" placeholder=\"Search\">\n        <button class=\"btn btn-secondary my-2 my-sm-0\" type=\"submit\">Search</button>\n      </form> -->\n    </div>\n  </nav>"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark bg-primary mb-3\">\n    <a class=\"navbar-brand\" href=\"#\" [routerLink]=\"['/dashboard']\">Time Clock Application</a>\n    <button (click)=\"isCollapsed = !isCollapsed\" [attr.aria-expanded]=\"!isCollapsed\" class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n  \n    <div class=\"collapse navbar-collapse\" id=\"navbarColor01\" [ngbCollapse] = \"isCollapsed\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item\" *ngIf=\"!authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\">\n          <a class=\"nav-link\" [routerLink]=\"['/']\">Home </a>\n        </li>\n      </ul> \n      <ul class=\"navbar-nav ml-auto\">\n          <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"> \n            <a class=\"nav-link\" [routerLink]=\"['/dashboard']\">Dashboard </a>\n          </li>\n          <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"> \n            <a class=\"nav-link\" [routerLink]=\"['/profile']\">Profile </a>\n          </li>\n          <li class=\"nav-item\" *ngIf=\"!authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"> \n            <a class=\"nav-link\" [routerLink]=\"['/login']\">Login </a>\n          </li>\n          <li class=\"nav-item\" *ngIf=\"!authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\">\n              <a class=\"nav-link\" [routerLink]=\"['/register']\">Register </a>\n          </li>\n          <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\">\n            <a class=\"nav-link\" (click)=\"onLogoutClick()\" href=\"#\">Logout </a>\n        </li>\n      </ul>\n      <!-- <form class=\"form-inline my-2 my-lg-0\">\n        <input class=\"form-control mr-sm-2\" type=\"text\" placeholder=\"Search\">\n        <button class=\"btn btn-secondary my-2 my-sm-0\" type=\"submit\">Search</button>\n      </form> -->\n    </div>\n  </nav>"
 
 /***/ }),
 
@@ -546,7 +762,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"user\">\n  <h2 class=\"page-header\">{{user.name}}</h2>\n  <ul class=\"list-group\">\n    <li class=\"list-group-item\">Username: {{user.username}}</li>\n    <li class=\"list-group-item\">Email: {{user.email}}</li>\n  </ul>\n</div>"
+module.exports = "<div *ngIf=\"user\">\n  <h2 class=\"page-header\">{{user.name}}</h2>\n  <ul class=\"list-group\">\n    <li class=\"list-group-item\">Username: {{user.username}}</li>\n    <li class=\"list-group-item\">Email: {{user.email}}</li>\n  </ul>\n\n\n  <table class=\"table\">\n      <thead class=\"nonScrollHead\">\n          <tr class=\"trClass\">\n              <th>Day</th>\n              <th scope=\"col\" class=\"thClass\">Category</th>\n              <th scope=\"col\" class=\"thClass\">Time</th>\n          </tr>\n      </thead>\n      <tbody class=\"scrollTableBody\" id=\"scrollBody\">\n          <tr class=\"trClass\">\n              <th scope=\"row\" class=\"bodyContent\">Day1</th>\n              <td class=\"bodyContent\">Cat1</td>\n              <td class=\"bodyContent\">Time1</td>\n          </tr>\n      </tbody>\n  </table>\n</div>"
 
 /***/ }),
 
@@ -822,6 +1038,7 @@ var AuthService = /** @class */ (function () {
     function AuthService(http) {
         this.http = http;
     }
+    // http://localhost:3000/
     AuthService.prototype.registerUser = function (user) {
         var headers = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
         headers.append('Content-Type', 'application/json');
@@ -830,6 +1047,7 @@ var AuthService = /** @class */ (function () {
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
     };
     AuthService.prototype.getProfile = function () {
+        console.log("Getting profile");
         var headers = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
         this.loadToken();
         headers.append('Content-Type', 'application/json');
@@ -837,6 +1055,31 @@ var AuthService = /** @class */ (function () {
         return this.http
             .get('users/profile', { headers: headers })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
+    };
+    AuthService.prototype.addUserActivity = function (user, type, date, time) {
+        console.log("Adding User Activity", date);
+        var activity = {
+            userId: user._id,
+            activityType: type,
+            date: date,
+            time: time
+        };
+        var headers = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
+        this.loadToken();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', this.authToken);
+        return this.http
+            .post('users/activity/', activity, { headers: headers })
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
+    };
+    AuthService.prototype.getUserActivities = function (user) {
+        console.log("Getting all the user activities", user._id);
+        var headers = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
+        this.loadToken();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', this.authToken);
+        return this.http
+            .get('users/activity/' + user._id, { headers: headers }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
     };
     AuthService.prototype.authenticateUser = function (user) {
         var headers = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();

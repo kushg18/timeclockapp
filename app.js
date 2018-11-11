@@ -26,7 +26,8 @@ mongoose.connection.on('error', (err) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Port Number
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
+// const port = 3000;
 
 // CORS Middleware
 app.use(cors());
@@ -48,7 +49,7 @@ app.get('/', (req, res)=>{
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'));
-})
+});
 
 // Start Server
 app.listen(port, () => {
