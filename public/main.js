@@ -762,7 +762,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"user\">\n  <h2 class=\"page-header\">{{user.name}}</h2>\n  <ul class=\"list-group\">\n    <li class=\"list-group-item\">Username: {{user.username}}</li>\n    <li class=\"list-group-item\">Email: {{user.email}}</li>\n  </ul>\n\n\n  <table class=\"table\">\n      <thead class=\"nonScrollHead\">\n          <tr class=\"trClass\">\n              <th>Day</th>\n              <th scope=\"col\" class=\"thClass\">Category</th>\n              <th scope=\"col\" class=\"thClass\">Time</th>\n          </tr>\n      </thead>\n      <tbody class=\"scrollTableBody\" id=\"scrollBody\">\n          <tr class=\"trClass\">\n              <th scope=\"row\" class=\"bodyContent\">Day1</th>\n              <td class=\"bodyContent\">Cat1</td>\n              <td class=\"bodyContent\">Time1</td>\n          </tr>\n      </tbody>\n  </table>\n</div>"
+module.exports = "<div *ngIf=\"user\">\n  <h2 class=\"page-header\">{{user.name}}</h2>\n  <ul class=\"list-group\">\n    <li class=\"list-group-item\">Username: {{user.username}}</li>\n    <li class=\"list-group-item\">Email: {{user.email}}</li>\n  </ul>\n\n\n  <table class=\"table\">\n      <thead class=\"nonScrollHead\">\n          <tr class=\"trClass\">\n              <th>Day</th>\n              <th scope=\"col\" class=\"thClass\">Category</th>\n              <th scope=\"col\" class=\"thClass\">Time</th>\n          </tr>\n      </thead>\n      <tbody class=\"scrollTableBody\" id=\"scrollBody\">\n          <tr *ngFor=\"let activity of reverseArray(userLastThreeDateActivities);\" class=\"trClass\">\n              <th scope=\"row\" class=\"bodyContent\">{{getDay(activity.date)}}</th>\n              <td class=\"bodyContent\">{{activity.activityType}}</td>\n              <td class=\"bodyContent\">{{activity.time}}</td>\n          </tr>\n      </tbody>\n  </table>\n</div>"
 
 /***/ }),
 
@@ -799,16 +799,59 @@ var ProfileComponent = /** @class */ (function () {
         this.authService = authService;
         this.router = router;
         this.flashMessage = flashMessage;
+        this.userLastThreeDateActivities = [];
     }
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.authService.getProfile()
             .subscribe(function (profile) {
             _this.user = profile.user;
+            _this.getActivities();
         }, function (err) {
             console.log(err);
             return false;
         });
+    };
+    ProfileComponent.prototype.getActivities = function () {
+        var _this = this;
+        this.authService.getUserActivities(this.user)
+            .subscribe(function (data) {
+            _this.userLastThreeDateActivities = [];
+            var current = new Date();
+            var yesterday = new Date();
+            var dayBeforeYest = new Date();
+            yesterday.setDate(current.getDate() - 1);
+            dayBeforeYest.setDate(yesterday.getDate() - 1);
+            var lastThreeDates = [current.getDate(), yesterday.getDate(), dayBeforeYest.getDate()];
+            var lastThreeMonths = [current.getMonth(), yesterday.getMonth(), dayBeforeYest.getMonth()];
+            var lastThreeYears = [current.getFullYear(), yesterday.getFullYear(), dayBeforeYest.getFullYear()];
+            for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
+                var entry = data_1[_i];
+                var entryDate = new Date(entry.date);
+                if (lastThreeDates.includes(entryDate.getDate())
+                    && lastThreeMonths.includes(entryDate.getMonth())
+                    && lastThreeYears.includes(entryDate.getFullYear())) {
+                    _this.userLastThreeDateActivities.push(entry);
+                }
+            }
+        });
+    };
+    ProfileComponent.prototype.reverseArray = function (array) {
+        return array.slice(0).reverse();
+    };
+    ProfileComponent.prototype.getDay = function (date) {
+        var temp = new Date(date);
+        var weekday = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+        ];
+        return weekday[temp.getDay()];
+        // return "";
     };
     ProfileComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
