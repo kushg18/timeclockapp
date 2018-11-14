@@ -41,6 +41,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/dashboard/dashboard.component */ "./src/app/components/dashboard/dashboard.component.ts");
 /* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
 /* harmony import */ var _guards_auth_gaurd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./guards/auth.gaurd */ "./src/app/guards/auth.gaurd.ts");
+/* harmony import */ var _components_management_management_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/management/management.component */ "./src/app/components/management/management.component.ts");
+/* harmony import */ var _guards_role_gaurd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./guards/role.gaurd */ "./src/app/guards/role.gaurd.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -55,12 +57,15 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
 var routes = [
     { path: '', component: _components_home_home_component__WEBPACK_IMPORTED_MODULE_2__["HomeComponent"] },
     { path: 'register', component: _components_register_register_component__WEBPACK_IMPORTED_MODULE_3__["RegisterComponent"] },
     { path: 'login', component: _components_login_login_component__WEBPACK_IMPORTED_MODULE_4__["LoginComponent"] },
     { path: 'dashboard', component: _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_5__["DashboardComponent"], canActivate: [_guards_auth_gaurd__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"]] },
-    { path: 'profile', component: _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_6__["ProfileComponent"], canActivate: [_guards_auth_gaurd__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"]] }
+    { path: 'profile', component: _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_6__["ProfileComponent"], canActivate: [_guards_auth_gaurd__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"]] },
+    { path: 'management', component: _components_management_management_component__WEBPACK_IMPORTED_MODULE_8__["ManagementComponent"], canActivate: [_guards_auth_gaurd__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"], _guards_role_gaurd__WEBPACK_IMPORTED_MODULE_9__["RoleGuard"]] }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -70,7 +75,7 @@ var AppRoutingModule = /** @class */ (function () {
             imports: [
                 _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes)
             ],
-            providers: [_guards_auth_gaurd__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"]],
+            providers: [_guards_auth_gaurd__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"], _guards_role_gaurd__WEBPACK_IMPORTED_MODULE_9__["RoleGuard"]],
             exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]]
         })
     ], AppRoutingModule);
@@ -167,12 +172,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
 /* harmony import */ var _services_validate_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./services/validate.service */ "./src/app/services/validate.service.ts");
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _components_management_management_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/management/management.component */ "./src/app/components/management/management.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -203,6 +210,7 @@ var AppModule = /** @class */ (function () {
                 _components_home_home_component__WEBPACK_IMPORTED_MODULE_11__["HomeComponent"],
                 _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_12__["DashboardComponent"],
                 _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_13__["ProfileComponent"],
+                _components_management_management_component__WEBPACK_IMPORTED_MODULE_16__["ManagementComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -241,7 +249,7 @@ module.exports = "@import url('https://fonts.googleapis.com/css?family=Orbitron'
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Dashboard</h2>\n<hr>\n<p>Welcome to Dashboard!</p>\n<div class=\"jumbotron text-center\">\n    <h1>Punch Your Clock</h1>\n    <div class=\"row\">\n        <div class=\"col\">\n            <div class=\"border border-primary rounded clock mb-2\">\n                <span id=\"hour\"></span>\n                <span id=\"minute\"></span>\n                <span id=\"second\"></span>\n                <span id='ampm'></span>\n            </div>\n            <div class=\"border rounded dayAndDate mb-2\">\n                <span class=\"day\" id=\"day\"></span>\n                <span class=\"date\" id=\"date\"></span>\n            </div>\n        </div>\n        <div class=\"col clockButtons\">\n            <button type=\"button\" *ngIf=\"punchIn\" (click)=\"punchedIn()\" class=\"btn btn-outline-primary mr-2 mb-2\">Punch In</button>\n            <button type=\"button\" *ngIf=\"punchOut\" (click)=\"punchedOut()\" class=\"btn btn-outline-primary mr-2 mb-2\">Punch Out</button>\n            <br>\n            <button type=\"button\" *ngIf=\"breakIn\" (click)=\"breakedIn()\" class=\"btn btn-outline-primary mr-2 mb-2\">Break In</button>\n            <button type=\"button\" *ngIf=\"breakOut\" (click)=\"breakedOut()\" class=\"btn btn-outline-primary mr-2 mb-2\">Break Out</button>\n            <br>\n            <button type=\"button\" *ngIf=\"lunchIn\" (click)=\"lunchedIn()\" class=\"btn btn-outline-primary mr-2\">Lunch In</button>\n            <button type=\"button\" *ngIf=\"lunchOut\" (click)=\"lunchedOut()\" class=\"btn btn-outline-primary mr-2\">Lunch Out</button>\n        </div>\n        <div class=\"col\">\n            <table class=\"table\">\n                <thead class=\"nonScrollHead\">\n                    <tr class=\"trClass\">\n                        <th scope=\"col\" class=\"thClass\">Category</th>\n                        <th scope=\"col\" class=\"thClass\">Time</th>\n                    </tr>\n                </thead>\n                <tbody class=\"scrollTableBody\" id=\"scrollBody\">\n                    <tr *ngFor=\"let activity of reverseArray(userActivities);\" class=\"trClass\">\n                        <th scope=\"row\" class=\"bodyContent\">{{activity.activityType}}</th>\n                        <td class=\"bodyContent\">  {{activity.time}}</td>\n                    </tr>\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n\n"
+module.exports = "<h2 class=\"page-header\">Dashboard</h2>\n<hr>\n<div class=\"jumbotron text-center\">\n    <h1>Punch Your Clock</h1>\n    <div class=\"row\">\n        <div class=\"col\">\n            <div class=\"border border-primary rounded clock mb-2\">\n                <span id=\"hour\"></span>\n                <span id=\"minute\"></span>\n                <span id=\"second\"></span>\n                <span id='ampm'></span>\n            </div>\n            <div class=\"border rounded dayAndDate mb-2\">\n                <span class=\"day\" id=\"day\"></span>\n                <span class=\"date\" id=\"date\"></span>\n            </div>\n        </div>\n        <div class=\"col clockButtons\">\n            <button type=\"button\" *ngIf=\"punchIn\" (click)=\"punchedIn()\" class=\"btn btn-outline-primary mr-2 mb-2\">Punch In</button>\n            <button type=\"button\" *ngIf=\"punchOut\" (click)=\"punchedOut()\" class=\"btn btn-outline-primary mr-2 mb-2\">Punch Out</button>\n            <br>\n            <button type=\"button\" *ngIf=\"breakIn\" (click)=\"breakedIn()\" class=\"btn btn-outline-primary mr-2 mb-2\">Break In</button>\n            <button type=\"button\" *ngIf=\"breakOut\" (click)=\"breakedOut()\" class=\"btn btn-outline-primary mr-2 mb-2\">Break Out</button>\n            <br>\n            <button type=\"button\" *ngIf=\"lunchIn\" (click)=\"lunchedIn()\" class=\"btn btn-outline-primary mr-2\">Lunch In</button>\n            <button type=\"button\" *ngIf=\"lunchOut\" (click)=\"lunchedOut()\" class=\"btn btn-outline-primary mr-2\">Lunch Out</button>\n        </div>\n        <div class=\"col\">\n            <table class=\"table\">\n                <thead class=\"nonScrollHead\">\n                    <tr class=\"trClass\">\n                        <th scope=\"col\" class=\"thClass\">Category</th>\n                        <th scope=\"col\" class=\"thClass\">Time</th>\n                    </tr>\n                </thead>\n                <tbody class=\"scrollTableBody\" id=\"scrollBody\">\n                    <tr *ngFor=\"let activity of reverseArray(userActivities);\" class=\"trClass\">\n                        <th scope=\"row\" class=\"bodyContent\">{{activity.activityType}}</th>\n                        <td class=\"bodyContent\">  {{activity.time}}</td>\n                    </tr>\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n\n"
 
 /***/ }),
 
@@ -632,7 +640,12 @@ var LoginComponent = /** @class */ (function () {
                     cssClass: "alert alert-success",
                     timeout: 3000
                 });
-                _this.router.navigate(['/dashboard']);
+                if (data.user.permission == "user") {
+                    _this.router.navigate(['/dashboard']);
+                }
+                else {
+                    _this.router.navigate(['/management']);
+                }
             }
             else {
                 _this.flashMessage.show(data.msg, {
@@ -660,6 +673,130 @@ var LoginComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/components/management/management.component.css":
+/*!****************************************************************!*\
+  !*** ./src/app/components/management/management.component.css ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/* The side navigation menu */\n.sidenav {\n    height: 100%; /* 100% Full-height */\n    width: 0; /* 0 width - change this with JavaScript */\n    position: fixed; /* Stay in place */\n    z-index: 1; /* Stay on top */\n    top: 60px; /* Stay at the top */\n    left: 0;\n    background-color: #158CBA; /* Black*/\n    overflow-x: hidden; /* Disable horizontal scroll */\n    padding-top: 60px; /* Place content 60px from the top */\n    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */\n}\n/* The navigation menu links */\n.sidenav a {\n    padding: 8px 8px 8px 32px;\n    text-decoration: none;\n    font-size: 25px;\n    color: #111;\n    display: block;\n    transition: 0.3s;\n}\n/* When you mouse over the navigation links, change their color */\n.sidenav a:hover {\n    color: #f1f1f1;\n}\n/* Position and style the close button (top right corner) */\n.sidenav .closebtn {\n    position: absolute;\n    top: 0;\n    right: 25px;\n    font-size: 36px;\n    margin-left: 50px;\n}\n/* Style page content - use this if you want to push the page content to the right when you open the side navigation */\n#main {\n    transition: margin-left .5s;\n    padding: 20px;\n}\n/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */\n@media screen and (max-height: 450px) {\n    .sidenav {padding-top: 15px;}\n    .sidenav a {font-size: 18px;}\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9tYW5hZ2VtZW50L21hbmFnZW1lbnQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSw4QkFBOEI7QUFDOUI7SUFDSSxhQUFhLENBQUMsc0JBQXNCO0lBQ3BDLFNBQVMsQ0FBQywyQ0FBMkM7SUFDckQsZ0JBQWdCLENBQUMsbUJBQW1CO0lBQ3BDLFdBQVcsQ0FBQyxpQkFBaUI7SUFDN0IsVUFBVSxDQUFDLHFCQUFxQjtJQUNoQyxRQUFRO0lBQ1IsMEJBQTBCLENBQUMsVUFBVTtJQUNyQyxtQkFBbUIsQ0FBQywrQkFBK0I7SUFDbkQsa0JBQWtCLENBQUMscUNBQXFDO0lBQ3hELGlCQUFpQixDQUFDLDBEQUEwRDtDQUMvRTtBQUVELCtCQUErQjtBQUMvQjtJQUNJLDBCQUEwQjtJQUMxQixzQkFBc0I7SUFDdEIsZ0JBQWdCO0lBQ2hCLFlBQVk7SUFDWixlQUFlO0lBQ2YsaUJBQWlCO0NBQ3BCO0FBRUQsa0VBQWtFO0FBQ2xFO0lBQ0ksZUFBZTtDQUNsQjtBQUVELDREQUE0RDtBQUM1RDtJQUNJLG1CQUFtQjtJQUNuQixPQUFPO0lBQ1AsWUFBWTtJQUNaLGdCQUFnQjtJQUNoQixrQkFBa0I7Q0FDckI7QUFFRCx1SEFBdUg7QUFDdkg7SUFDSSw0QkFBNEI7SUFDNUIsY0FBYztDQUNqQjtBQUVELGlJQUFpSTtBQUNqSTtJQUNJLFVBQVUsa0JBQWtCLENBQUM7SUFDN0IsWUFBWSxnQkFBZ0IsQ0FBQztDQUNoQyIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvbWFuYWdlbWVudC9tYW5hZ2VtZW50LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBUaGUgc2lkZSBuYXZpZ2F0aW9uIG1lbnUgKi9cbi5zaWRlbmF2IHtcbiAgICBoZWlnaHQ6IDEwMCU7IC8qIDEwMCUgRnVsbC1oZWlnaHQgKi9cbiAgICB3aWR0aDogMDsgLyogMCB3aWR0aCAtIGNoYW5nZSB0aGlzIHdpdGggSmF2YVNjcmlwdCAqL1xuICAgIHBvc2l0aW9uOiBmaXhlZDsgLyogU3RheSBpbiBwbGFjZSAqL1xuICAgIHotaW5kZXg6IDE7IC8qIFN0YXkgb24gdG9wICovXG4gICAgdG9wOiA2MHB4OyAvKiBTdGF5IGF0IHRoZSB0b3AgKi9cbiAgICBsZWZ0OiAwO1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMxNThDQkE7IC8qIEJsYWNrKi9cbiAgICBvdmVyZmxvdy14OiBoaWRkZW47IC8qIERpc2FibGUgaG9yaXpvbnRhbCBzY3JvbGwgKi9cbiAgICBwYWRkaW5nLXRvcDogNjBweDsgLyogUGxhY2UgY29udGVudCA2MHB4IGZyb20gdGhlIHRvcCAqL1xuICAgIHRyYW5zaXRpb246IDAuNXM7IC8qIDAuNSBzZWNvbmQgdHJhbnNpdGlvbiBlZmZlY3QgdG8gc2xpZGUgaW4gdGhlIHNpZGVuYXYgKi9cbn1cblxuLyogVGhlIG5hdmlnYXRpb24gbWVudSBsaW5rcyAqL1xuLnNpZGVuYXYgYSB7XG4gICAgcGFkZGluZzogOHB4IDhweCA4cHggMzJweDtcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gICAgZm9udC1zaXplOiAyNXB4O1xuICAgIGNvbG9yOiAjMTExO1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICAgIHRyYW5zaXRpb246IDAuM3M7XG59XG5cbi8qIFdoZW4geW91IG1vdXNlIG92ZXIgdGhlIG5hdmlnYXRpb24gbGlua3MsIGNoYW5nZSB0aGVpciBjb2xvciAqL1xuLnNpZGVuYXYgYTpob3ZlciB7XG4gICAgY29sb3I6ICNmMWYxZjE7XG59XG5cbi8qIFBvc2l0aW9uIGFuZCBzdHlsZSB0aGUgY2xvc2UgYnV0dG9uICh0b3AgcmlnaHQgY29ybmVyKSAqL1xuLnNpZGVuYXYgLmNsb3NlYnRuIHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgdG9wOiAwO1xuICAgIHJpZ2h0OiAyNXB4O1xuICAgIGZvbnQtc2l6ZTogMzZweDtcbiAgICBtYXJnaW4tbGVmdDogNTBweDtcbn1cblxuLyogU3R5bGUgcGFnZSBjb250ZW50IC0gdXNlIHRoaXMgaWYgeW91IHdhbnQgdG8gcHVzaCB0aGUgcGFnZSBjb250ZW50IHRvIHRoZSByaWdodCB3aGVuIHlvdSBvcGVuIHRoZSBzaWRlIG5hdmlnYXRpb24gKi9cbiNtYWluIHtcbiAgICB0cmFuc2l0aW9uOiBtYXJnaW4tbGVmdCAuNXM7XG4gICAgcGFkZGluZzogMjBweDtcbn1cblxuLyogT24gc21hbGxlciBzY3JlZW5zLCB3aGVyZSBoZWlnaHQgaXMgbGVzcyB0aGFuIDQ1MHB4LCBjaGFuZ2UgdGhlIHN0eWxlIG9mIHRoZSBzaWRlbmF2IChsZXNzIHBhZGRpbmcgYW5kIGEgc21hbGxlciBmb250IHNpemUpICovXG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LWhlaWdodDogNDUwcHgpIHtcbiAgICAuc2lkZW5hdiB7cGFkZGluZy10b3A6IDE1cHg7fVxuICAgIC5zaWRlbmF2IGEge2ZvbnQtc2l6ZTogMThweDt9XG59Il19 */"
+
+/***/ }),
+
+/***/ "./src/app/components/management/management.component.html":
+/*!*****************************************************************!*\
+  !*** ./src/app/components/management/management.component.html ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=\"mySidenav\" class=\"sidenav\">\n  <a href=\"javascript:void(0)\" class=\"closebtn\" (click)=\"closeNav()\">&times;</a>\n  <h3 class=\"mr-auto\">Users</h3>\n  <div *ngFor=\"let user of users;\">\n    <a (click)=\"getActivities(user)\" class=\"btn btn-secondary mr-2 mb-2\">{{user.username}}:{{user.name}}</a>\n  </div>\n</div>\n  \n<!-- Use any element to open the sidenav -->\n<button type=\"button\" (click)=\"openNav()\" class=\"btn btn-outline-primary mr-2 mb-2\">open</button>\n\n<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->\n<div id=\"main\">\n  <table class=\"table\">\n    <thead class=\"nonScrollHead\">\n      <tr class=\"trClass\">\n        <th>Day</th>\n        <th scope=\"col\" class=\"thClass\">Category</th>\n        <th scope=\"col\" class=\"thClass\">Time</th>\n      </tr>\n    </thead>\n    <tbody class=\"scrollTableBody\" id=\"scrollBody\">\n      <tr *ngFor=\"let activity of reverseArray(userActivities);\" class=\"trClass\">\n          <th scope=\"row\" class=\"bodyContent\">{{getDay(activity.date)}}</th>\n          <td class=\"bodyContent\">{{activity.activityType}}</td>\n          <td class=\"bodyContent\">{{activity.time}}</td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/components/management/management.component.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/components/management/management.component.ts ***!
+  \***************************************************************/
+/*! exports provided: ManagementComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ManagementComponent", function() { return ManagementComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var angular2_flash_messages__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! angular2-flash-messages */ "./node_modules/angular2-flash-messages/module/index.js");
+/* harmony import */ var angular2_flash_messages__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(angular2_flash_messages__WEBPACK_IMPORTED_MODULE_3__);
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ManagementComponent = /** @class */ (function () {
+    function ManagementComponent(authService, router, flashMessage) {
+        this.authService = authService;
+        this.router = router;
+        this.flashMessage = flashMessage;
+        this.users = [];
+        this.userActivities = [];
+    }
+    ManagementComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.authService.getUsers()
+            .subscribe(function (users) {
+            console.log(users);
+            _this.users = users;
+        }, function (err) {
+            console.log(err);
+            return false;
+        });
+    };
+    /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+    ManagementComponent.prototype.openNav = function () {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    };
+    /* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
+    ManagementComponent.prototype.closeNav = function () {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+        document.body.style.backgroundColor = "white";
+    };
+    ManagementComponent.prototype.getActivities = function (user) {
+        var _this = this;
+        console.log("Getting activities for: ", user);
+        this.authService.getUserActivities(user)
+            .subscribe(function (data) {
+            _this.userActivities = data;
+        });
+        this.closeNav();
+    };
+    ManagementComponent.prototype.reverseArray = function (array) {
+        return array.slice(0).reverse();
+    };
+    ManagementComponent.prototype.getDay = function (date) {
+        var temp = new Date(date);
+        var weekday = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+        ];
+        return weekday[temp.getDay()];
+        // return "";
+    };
+    ManagementComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-management',
+            template: __webpack_require__(/*! ./management.component.html */ "./src/app/components/management/management.component.html"),
+            styles: [__webpack_require__(/*! ./management.component.css */ "./src/app/components/management/management.component.css")]
+        }),
+        __metadata("design:paramtypes", [_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+            angular2_flash_messages__WEBPACK_IMPORTED_MODULE_3__["FlashMessagesService"]])
+    ], ManagementComponent);
+    return ManagementComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/components/navbar/navbar.component.css":
 /*!********************************************************!*\
   !*** ./src/app/components/navbar/navbar.component.css ***!
@@ -678,7 +815,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark bg-primary mb-3\">\n    <a class=\"navbar-brand\" href=\"#\" [routerLink]=\"['/dashboard']\">Time Clock Application</a>\n    <button (click)=\"isCollapsed = !isCollapsed\" [attr.aria-expanded]=\"!isCollapsed\" class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n  \n    <div class=\"collapse navbar-collapse\" id=\"navbarColor01\" [ngbCollapse] = \"isCollapsed\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item\" *ngIf=\"!authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\">\n          <a class=\"nav-link\" [routerLink]=\"['/']\">Home </a>\n        </li>\n      </ul> \n      <ul class=\"navbar-nav ml-auto\">\n          <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"> \n            <a class=\"nav-link\" [routerLink]=\"['/dashboard']\">Dashboard </a>\n          </li>\n          <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"> \n            <a class=\"nav-link\" [routerLink]=\"['/profile']\">Profile </a>\n          </li>\n          <li class=\"nav-item\" *ngIf=\"!authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"> \n            <a class=\"nav-link\" [routerLink]=\"['/login']\">Login </a>\n          </li>\n          <li class=\"nav-item\" *ngIf=\"!authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\">\n              <a class=\"nav-link\" [routerLink]=\"['/register']\">Register </a>\n          </li>\n          <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\">\n            <a class=\"nav-link\" (click)=\"onLogoutClick()\" href=\"#\">Logout </a>\n        </li>\n      </ul>\n      <!-- <form class=\"form-inline my-2 my-lg-0\">\n        <input class=\"form-control mr-sm-2\" type=\"text\" placeholder=\"Search\">\n        <button class=\"btn btn-secondary my-2 my-sm-0\" type=\"submit\">Search</button>\n      </form> -->\n    </div>\n  </nav>"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark bg-primary mb-3\">\n    <a class=\"navbar-brand\" href=\"#\" [routerLink]=\"['/']\">Time Clock Application</a>\n    <button (click)=\"isCollapsed = !isCollapsed\" [attr.aria-expanded]=\"!isCollapsed\" class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n  \n    <div class=\"collapse navbar-collapse\" id=\"navbarColor01\" [ngbCollapse] = \"isCollapsed\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item\" *ngIf=\"!authService.loggedIn() && !authService.adminAccess()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\">\n          <a class=\"nav-link\" [routerLink]=\"['/']\">Home </a>\n        </li>\n      </ul>  \n      <ul class=\"navbar-nav ml-auto\">\n          <li class=\"nav-item\" *ngIf=\"authService.loggedIn() && authService.adminAccess()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"> \n            <a class=\"nav-link\" [routerLink]=\"['/management']\">Management </a>\n          </li>\n          <li class=\"nav-item\" *ngIf=\"authService.loggedIn() && !authService.adminAccess()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"> \n            <a class=\"nav-link\" [routerLink]=\"['/dashboard']\">Dashboard </a>\n          </li>\n          <li class=\"nav-item\" *ngIf=\"authService.loggedIn() && !authService.adminAccess()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"> \n            <a class=\"nav-link\" [routerLink]=\"['/profile']\">Profile </a>\n          </li>\n          <li class=\"nav-item\" *ngIf=\"!authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\"> \n            <a class=\"nav-link\" [routerLink]=\"['/login']\">Login </a>\n          </li>\n          <li class=\"nav-item\" *ngIf=\"!authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact:true}\">\n              <a class=\"nav-link\" [routerLink]=\"['/register']\">Register </a>\n          </li>\n          <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\">\n            <a class=\"nav-link\" (click)=\"onLogoutClick()\" href=\"#\">Logout </a>\n        </li>\n      </ul>\n      <!-- <form class=\"form-inline my-2 my-lg-0\">\n        <input class=\"form-control mr-sm-2\" type=\"text\" placeholder=\"Search\">\n        <button class=\"btn btn-secondary my-2 my-sm-0\" type=\"submit\">Search</button>\n      </form> -->\n    </div>\n  </nav>"
 
 /***/ }),
 
@@ -806,6 +943,7 @@ var ProfileComponent = /** @class */ (function () {
         this.authService.getProfile()
             .subscribe(function (profile) {
             _this.user = profile.user;
+            console.log(_this.user);
             _this.getActivities();
         }, function (err) {
             console.log(err);
@@ -937,7 +1075,7 @@ var RegisterComponent = /** @class */ (function () {
             name: this.name,
             username: this.username,
             email: this.email,
-            password: this.password
+            password: this.password,
         };
         // Required Fields
         if (!this.validateService.validateRegister(user)) {
@@ -1044,6 +1182,56 @@ var AuthGuard = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/guards/role.gaurd.ts":
+/*!**************************************!*\
+  !*** ./src/app/guards/role.gaurd.ts ***!
+  \**************************************/
+/*! exports provided: RoleGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RoleGuard", function() { return RoleGuard; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/auth.service */ "./src/app/services/auth.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var RoleGuard = /** @class */ (function () {
+    function RoleGuard(authService, router) {
+        this.authService = authService;
+        this.router = router;
+    }
+    RoleGuard.prototype.canActivate = function () {
+        if (this.authService.adminAccess()) {
+            return true;
+        }
+        else {
+            this.router.navigate(['/dashboard']);
+            return false;
+        }
+    };
+    RoleGuard = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+    ], RoleGuard);
+    return RoleGuard;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/services/auth.service.ts":
 /*!******************************************!*\
   !*** ./src/app/services/auth.service.ts ***!
@@ -1136,6 +1324,8 @@ var AuthService = /** @class */ (function () {
         localStorage.setItem('user', JSON.stringify(user));
         this.authToken = token;
         this.user = user;
+        console.log(this.user);
+        console.log(this.user.permission);
     };
     AuthService.prototype.loadToken = function () {
         var token = localStorage.getItem('id_token');
@@ -1144,10 +1334,29 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.loggedIn = function () {
         return !helper.isTokenExpired(tokenGetter());
     };
+    AuthService.prototype.adminAccess = function () {
+        var user = JSON.parse(localStorage.getItem('user'));
+        if (user != null) {
+            var permission = user["permission"];
+            // console.log(user);
+            // console.log(permission);
+            return user["permission"] == "admin";
+        }
+        return false;
+    };
     AuthService.prototype.logout = function () {
         this.authToken = null;
         this.user = null;
         localStorage.clear();
+    };
+    AuthService.prototype.getUsers = function () {
+        console.log("Getting all users");
+        var headers = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
+        this.loadToken();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', this.authToken);
+        return this.http
+            .get('users/', { headers: headers }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
     };
     AuthService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({

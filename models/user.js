@@ -18,6 +18,10 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    permission: {
+        type: String,
+        default: "user"
     }
 });
 
@@ -31,6 +35,7 @@ module.exports.getUserByUsername = function(username, callback){
     User.findOne(query, callback);
 }
 module.exports.addUser = function(newUser, callback){
+    console.log("User:",newUser);
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
             if(err){
@@ -46,4 +51,7 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
         if(err) throw err;
         callback(null, isMatch);
     });
+}
+module.exports.getAllUsers = function(callback){
+    User.find({permission: "user"}, callback);
 }

@@ -13,7 +13,8 @@ router.post('/register', (req, res, next) => {
         name: req.body.name,
         username: req.body.username,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        permission: req.body.permission
     });
 
     User.addUser(newUser, (err, user) => {
@@ -47,7 +48,8 @@ router.post('/authenticate', (req, res, next) => {
                         id: user._id,
                         name: user.name,
                         username: user.username,
-                        email: user.email
+                        email: user.email,
+                        permission: user.permission
                     }
                 });
             }else{
@@ -94,6 +96,18 @@ router.get('/activity/:userId', passport.authenticate('jwt', {session: false}), 
             res.json({success: false, msg: 'Failed to get user activity'});
         }else{
             res.json(activity);
+        }
+    });
+});
+
+// Get All Users
+router.get('/', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    console.log("Getting All Users");
+    User.getAllUsers((err, users) => {
+        if(err){
+            res.json({success: false, msg: 'Failed to get all users'});
+        }else{
+            res.json(users);
         }
     });
 });
