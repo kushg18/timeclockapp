@@ -61,7 +61,7 @@ router.post('/authenticate', (req, res, next) => {
 
 // Profile
 router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
-    console.log("Getting Profile");
+    // console.log("Getting Profile");
     res.json({
         user: req.user
     });
@@ -69,14 +69,14 @@ router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res
 
 // Add Activity
 router.post('/activity', passport.authenticate('jwt', {session: false}), (req, res, next) => {
-    console.log("Adding Activity");
+    // console.log("Adding Activity");
     let newActivity = new Activity({
         userId: req.body.userId,
         activityType: req.body.activityType,
         date: req.body.date,
         time: req.body.time
     });
-    console.log(newActivity);
+    // console.log(newActivity);
     Activity.addActivity(newActivity, (err, activity) => {
         if(err){
             // res.send(err);
@@ -89,7 +89,7 @@ router.post('/activity', passport.authenticate('jwt', {session: false}), (req, r
  
 // Get All Activities
 router.get('/activity/:userId', passport.authenticate('jwt', {session: false}), (req, res, next) => {
-    console.log("Getting Activity");
+    // console.log("Getting Activity");
     var userId = req.params.userId;
     Activity.getActivitiesByUserId(userId, (err, activity) => {
         if(err){
@@ -102,7 +102,7 @@ router.get('/activity/:userId', passport.authenticate('jwt', {session: false}), 
 
 // Get All Users
 router.get('/', passport.authenticate('jwt', {session: false}), (req, res, next) => {
-    console.log("Getting All Users");
+    // console.log("Getting All Users");
     User.getAllUsers((err, users) => {
         if(err){
             res.json({success: false, msg: 'Failed to get all users'});

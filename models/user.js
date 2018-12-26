@@ -35,7 +35,7 @@ module.exports.getUserByUsername = function(username, callback){
     User.findOne(query, callback);
 }
 module.exports.addUser = function(newUser, callback){
-    console.log("User:",newUser);
+    // console.log("User:",newUser);
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
             if(err){
