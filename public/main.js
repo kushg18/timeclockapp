@@ -299,7 +299,7 @@ var DashboardComponent = /** @class */ (function () {
             _this.user = profile.user;
             _this.getActivities();
         }, function (err) {
-            console.log(err);
+            // console.log(err);
             return false;
         });
     }
@@ -340,7 +340,7 @@ var DashboardComponent = /** @class */ (function () {
             var currentDate = date.getDate();
             var currentMonth = date.getMonth();
             var currentYear = date.getFullYear();
-            console.log("Current Day: ", currentDate);
+            // console.log("Current Day: ", currentDate);
             for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
                 var entry = data_1[_i];
                 var entryDate = new Date(entry.date);
@@ -363,7 +363,7 @@ var DashboardComponent = /** @class */ (function () {
                     _this.setBreakInElems();
                 }
                 else {
-                    console.log("Setting checkouts");
+                    // console.log("Setting checkouts");
                     _this.checkedOut();
                 }
             }
@@ -735,10 +735,10 @@ var ManagementComponent = /** @class */ (function () {
         var _this = this;
         this.authService.getUsers()
             .subscribe(function (users) {
-            console.log(users);
+            // console.log(users);
             _this.users = users;
         }, function (err) {
-            console.log(err);
+            // console.log(err);
             return false;
         });
     };
@@ -756,7 +756,7 @@ var ManagementComponent = /** @class */ (function () {
     };
     ManagementComponent.prototype.getActivities = function (user) {
         var _this = this;
-        console.log("Getting activities for: ", user);
+        // console.log("Getting activities for: ",user);
         this.authService.getUserActivities(user)
             .subscribe(function (data) {
             _this.userActivities = data;
@@ -943,10 +943,10 @@ var ProfileComponent = /** @class */ (function () {
         this.authService.getProfile()
             .subscribe(function (profile) {
             _this.user = profile.user;
-            console.log(_this.user);
+            // console.log(this.user);
             _this.getActivities();
         }, function (err) {
-            console.log(err);
+            // console.log(err);
             return false;
         });
     };
@@ -1096,8 +1096,8 @@ var RegisterComponent = /** @class */ (function () {
         // Register User
         this.authService.registerUser(user)
             .subscribe(function (data) {
-            console.log(data);
-            console.log(data.success);
+            // console.log(data);
+            // console.log(data.success);
             if (data.success) {
                 _this.flashMessage.show('You are now registered and can log in.', {
                     cssClass: "alert alert-success",
@@ -1278,7 +1278,7 @@ var AuthService = /** @class */ (function () {
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
     };
     AuthService.prototype.getProfile = function () {
-        console.log("Getting profile");
+        // console.log("Getting profile");
         var headers = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
         this.loadToken();
         headers.append('Content-Type', 'application/json');
@@ -1288,7 +1288,7 @@ var AuthService = /** @class */ (function () {
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
     };
     AuthService.prototype.addUserActivity = function (user, type, date, time) {
-        console.log("Adding User Activity", date);
+        // console.log("Adding User Activity", date);
         var activity = {
             userId: user._id,
             activityType: type,
@@ -1304,7 +1304,7 @@ var AuthService = /** @class */ (function () {
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
     };
     AuthService.prototype.getUserActivities = function (user) {
-        console.log("Getting all the user activities", user._id);
+        // console.log("Getting all the user activities", user._id);
         var headers = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
         this.loadToken();
         headers.append('Content-Type', 'application/json');
@@ -1324,8 +1324,8 @@ var AuthService = /** @class */ (function () {
         localStorage.setItem('user', JSON.stringify(user));
         this.authToken = token;
         this.user = user;
-        console.log(this.user);
-        console.log(this.user.permission);
+        // console.log(this.user);
+        // console.log(this.user.permission);
     };
     AuthService.prototype.loadToken = function () {
         var token = localStorage.getItem('id_token');
@@ -1350,7 +1350,7 @@ var AuthService = /** @class */ (function () {
         localStorage.clear();
     };
     AuthService.prototype.getUsers = function () {
-        console.log("Getting all users");
+        // console.log("Getting all users");
         var headers = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
         this.loadToken();
         headers.append('Content-Type', 'application/json');
@@ -1396,7 +1396,7 @@ var ValidateService = /** @class */ (function () {
     function ValidateService() {
     }
     ValidateService.prototype.validateRegister = function (user) {
-        console.log(user.name);
+        // console.log(user.name);
         if (!user.name ||
             !user.email ||
             !user.username ||
