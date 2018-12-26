@@ -29,5 +29,7 @@ https://salty-lowlands-71106.herokuapp.com/
 8. Also, there is a management tab which is visible to just the manager of the application to have a look at all the user's activities. You need to acquire manager role to access this endpoint. 
 9. This management tab won't be visible to normal user of the application. So, if you try to hit the endpoint (/management), then it will redirect to the dashboard endpoint. Hence, restricted endpoints are protected for respective roles.
 
-### Application Screeshots ###
+### Application Screenshots ###
 -----------------------------
+![alt text](https://github.com/kushg18/timeclockapp/blob/master/screenshots/home.png)
+![alt text](https://github.com/kushg18/timeclockapp/blob/master/screenshots/dashboard.png)
