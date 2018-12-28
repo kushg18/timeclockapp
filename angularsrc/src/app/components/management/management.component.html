@@ -1,0 +1,30 @@
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+  <h3 class="mr-auto">Users</h3>
+  <div *ngFor="let user of users;">
+    <a (click)="getActivities(user)" class="btn btn-secondary mr-2 mb-2">{{user.username}} -> {{user.name}}</a>
+  </div>
+</div>
+  
+<!-- Use any element to open the sidenav -->
+<button type="button" (click)="openNav()" class="btn btn-outline-primary userBtn mr-2 mb-2">Select User</button>
+
+<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+<div id="main">
+  <table class="table">
+    <thead class="nonScrollHead">
+      <tr class="trClass">
+        <th>Day</th>
+        <th scope="col" class="thClass">Category</th>
+        <th scope="col" class="thClass">Time</th>
+      </tr>
+    </thead>
+    <tbody class="scrollTableBody" id="scrollBody">
+      <tr *ngFor="let activity of reverseArray(userActivities);" class="trClass">
+          <th scope="row" class="bodyContent">{{getDay(activity.date)}}</th>
+          <td class="bodyContent">{{activity.activityType}}</td>
+          <td class="bodyContent">{{activity.time}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

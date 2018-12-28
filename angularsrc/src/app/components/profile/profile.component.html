@@ -1,0 +1,25 @@
+<div *ngIf="user">
+  <h2 class="page-header">{{user.name}}</h2>
+  <ul class="list-group">
+    <li class="list-group-item">Username: {{user.username}}</li>
+    <li class="list-group-item">Email: {{user.email}}</li>
+  </ul>
+
+
+  <table class="table">
+      <thead class="nonScrollHead">
+          <tr class="trClass">
+              <th>Day</th>
+              <th scope="col" class="thClass">Category</th>
+              <th scope="col" class="thClass">Time</th>
+          </tr>
+      </thead>
+      <tbody class="scrollTableBody" id="scrollBody">
+          <tr *ngFor="let activity of reverseArray(userLastThreeDateActivities);" class="trClass">
+              <th scope="row" class="bodyContent">{{getDay(activity.date)}}</th>
+              <td class="bodyContent">{{activity.activityType}}</td>
+              <td class="bodyContent">{{activity.time}}</td>
+          </tr>
+      </tbody>
+  </table>
+</div>

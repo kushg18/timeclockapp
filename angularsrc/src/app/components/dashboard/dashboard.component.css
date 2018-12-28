@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
+
+/* Overwrite the default to keep the scrollbar always visible */
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.clock{
+    width: 300px;
+    font-size: 34px;
+    padding: 10px; 
+    font-family: Orbitron;
+}
+
+.dayAndDate{
+    width: 300px;
+    padding: 5px; 
+}
+
+.day{
+    display: block;
+    font-size: 20px;
+    text-align: right;
+}
+
+.date{
+    display: block;
+    font-size: 12px;
+    text-align: right;
+}
+
+.clockButtons{
+    padding-top: 20px;
+}
+
+table {
+    text-align: center;
+}
+
+tbody, thead tr { display: block; }
+
+tbody {
+    height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+}
+
+tbody td, thead {
+    width: 120px;
+}
+
+
+.thClass{
+    width: 120px;
+}
+
+.bodyContent{
+    width: 120px;
+}

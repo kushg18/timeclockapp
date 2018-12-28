@@ -1,0 +1,46 @@
+<h2 class="page-header">Dashboard</h2>
+<hr>
+<div class="jumbotron text-center">
+    <h1>Punch Your Clock</h1>
+    <div class="row">
+        <div class="col">
+            <div class="border border-primary rounded clock mb-2">
+                <span id="hour"></span>
+                <span id="minute"></span>
+                <span id="second"></span>
+                <span id='ampm'></span>
+            </div>
+            <div class="border rounded dayAndDate mb-2">
+                <span class="day" id="day"></span>
+                <span class="date" id="date"></span>
+            </div>
+        </div>
+        <div class="col clockButtons">
+            <button type="button" *ngIf="punchIn" (click)="punchedIn()" class="btn btn-outline-primary mr-2 mb-2">Punch In</button>
+            <button type="button" *ngIf="punchOut" (click)="punchedOut()" class="btn btn-outline-primary mr-2 mb-2">Punch Out</button>
+            <br>
+            <button type="button" *ngIf="breakIn" (click)="breakedIn()" class="btn btn-outline-primary mr-2 mb-2">Break In</button>
+            <button type="button" *ngIf="breakOut" (click)="breakedOut()" class="btn btn-outline-primary mr-2 mb-2">Break Out</button>
+            <br>
+            <button type="button" *ngIf="lunchIn" (click)="lunchedIn()" class="btn btn-outline-primary mr-2">Lunch In</button>
+            <button type="button" *ngIf="lunchOut" (click)="lunchedOut()" class="btn btn-outline-primary mr-2">Lunch Out</button>
+        </div>
+        <div class="col">
+            <table class="table">
+                <thead class="nonScrollHead">
+                    <tr class="trClass">
+                        <th scope="col" class="thClass">Category</th>
+                        <th scope="col" class="thClass">Time</th>
+                    </tr>
+                </thead>
+                <tbody class="scrollTableBody" id="scrollBody">
+                    <tr *ngFor="let activity of reverseArray(userActivities);" class="trClass">
+                        <th scope="row" class="bodyContent">{{activity.activityType}}</th>
+                        <td class="bodyContent">  {{activity.time}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
