@@ -1,4 +1,4 @@
-Simple Time Clock Applicaiton
+Simple Time Clock Application
 =============================
 
 ### About ###
