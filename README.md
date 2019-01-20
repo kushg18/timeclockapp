@@ -8,7 +8,7 @@ This is a simple time clock application with some basic features. It is created 
 ### Deploy Information ###
 -----------------------------
 The application build is deployed to ***Heroku*** and the link is given below - 
-* https://salty-lowlands-71106.herokuapp.com/
+* https://timeclockkg.herokuapp.com/
 
 ### Technology Stack ### 
 -----------------------------
